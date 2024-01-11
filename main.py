@@ -1,4 +1,4 @@
-bot_token = '6773122549:AAEYjRn2mNa6SCJidZeAyx6lFrwxrr8fJLI'
+
 from telegram import Update, ParseMode
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram.utils.helpers import escape_markdown
@@ -8,9 +8,12 @@ import psycopg2
 from telegram import InputMediaPhoto
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
-
+import os 
 # Database connection parameters
-host = "connectify-db.postgres.database.azure.com"
+
+bot_token = os.environ.get('BOT_TOKEN')
+host = os.environ.get('DATABASE_URL')
+#host = "connectify-db.postgres.database.azure.com"
 database_name = "connectify"
 user = "connectifyadmin"
 password = "Eden258eden"
