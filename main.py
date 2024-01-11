@@ -1,39 +1,20 @@
-
+bot_token = '6773122549:AAEYjRn2mNa6SCJidZeAyx6lFrwxrr8fJLI'
 from telegram import Update, ParseMode
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram.utils.helpers import escape_markdown
 import requests
 from datetime import datetime
 import psycopg2
-
 from telegram import InputMediaPhoto
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
-from dotenv import load_dotenv
-import os
 
-# Load environment variables from .env file
-load_dotenv(".env")
-# Get the values using os.getenv
-database_url = os.getenv('DATABASE_URL')
-bot_token = os.getenv('BOT_TOKEN')
-# Check if database_url is None
-if database_url:
-    # Extract the individual components from the DATABASE_URL
-    database_url_parts = database_url.split("://")[1].split(":")
-    db_user = database_url_parts[0]
-    db_password = database_url_parts[1].split("@")[0]
-    db_host = database_url_parts[1].split("@")[1]
-    db_name = database_url.split("/")[-1]
-
-    # Database connection parameters
-    host = db_host
-    database_name = db_name
-    user = db_user
-    password = db_password
-    table_name = "events"
-else:
-    print("DATABASE_URL not set. Make sure it's defined in your environment.")
+# Database connection parameters
+host = "connectify-db.postgres.database.azure.com"
+database_name = "connectify"
+user = "connectifyadmin"
+password = "Eden258eden"
+table_name = "events"
 selected_event_type = None  # New global variable to store selected event type
 
 def start(update: Update, context: CallbackContext) -> None:
